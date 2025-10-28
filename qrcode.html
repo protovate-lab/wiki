@@ -1,0 +1,1388 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Description - NTHU iGEM</title>
+    <link rel="icon" type="image/png" href="https://static.igem.wiki/teams/5928/image/other/small-logo.webp">
+    <link rel="shortcut icon" type="image/png" href="https://static.igem.wiki/teams/5928/image/other/small-logo.webp">
+    <link href="static/style.css" rel="stylesheet">
+    <link href="static/base.css" rel="stylesheet">
+    <script src="static/transitions.js"></script>
+    <link href="static/common.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    
+    <style>
+        :root {
+            --primary-purple: #7D4DB7;
+            --accent-gold: #F5B32F;
+            --dark-gray: #222222;
+            --light-gray: #F5F5F5;
+            --section-gray: #EAEAEA;
+            --white: #FFFFFF;
+            --text-primary: #222222;
+            --text-light: #FFFFFF;
+            --gradient-primary: linear-gradient(135deg, #7D4DB7 0%, #9B59B6 100%);
+            --gradient-gold: linear-gradient(135deg, #F5B32F 0%, #F39C12 100%);
+            --shadow-light: 0 4px 20px rgba(125, 77, 183, 0.1);
+            --shadow-medium: 0 8px 30px rgba(125, 77, 183, 0.15);
+            --shadow-heavy: 0 15px 50px rgba(125, 77, 183, 0.2);
+        }
+
+        /* CSS Reset for cross-browser compatibility */
+        * {
+            box-sizing: border-box;
+            -webkit-box-sizing: border-box;
+            -moz-box-sizing: border-box;
+        }
+
+        body {
+            background: var(--white);
+            color: var(--text-primary);
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            margin: 0;
+            padding: 0;
+            overflow-x: hidden;
+            line-height: 1.6;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        /* Ensure consistent rendering across browsers */
+        img, video {
+            max-width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        /* Reset default margins and padding for common elements */
+        h1, h2, h3, h4, h5, h6, p, ul, ol, li {
+            margin: 0;
+            padding: 0;
+        }
+
+        ul, ol {
+            list-style: none;
+        }
+
+        /* Additional cross-browser compatibility fixes */
+        .section-container, .main-content, .nav-container {
+            -webkit-transform: translateZ(0);
+            transform: translateZ(0);
+            -webkit-backface-visibility: hidden;
+            backface-visibility: hidden;
+        }
+
+        /* Ensure consistent button behavior */
+        button, .btn {
+            -webkit-appearance: none;
+            -moz-appearance: none;
+            appearance: none;
+            border: none;
+            background: none;
+            cursor: pointer;
+        }
+
+        /* Color blocks for navbar */
+        .navbar_purple,
+        .navbar_gold {
+            position: fixed !important;
+            top: 0 !important;
+            left: 0 !important;
+            right: 0 !important;
+            width: 100% !important;
+            height: 80px;
+            transform: translateY(0);
+            margin: 0 !important;
+            padding: 0 !important;
+        }
+
+        .navbar_purple {
+            background: var(--primary-purple);
+            transition: transform 0.5s ease-in-out;
+            z-index: 2;
+        }
+
+        .navbar_gold {
+            background: var(--accent-gold);
+            transition: transform 0.75s ease-in-out;
+            z-index: 1;
+        }
+
+        .navbar_purple:not(.hidden) {
+            transform: translateY(-100%);
+        }
+
+        .navbar_gold:not(.hidden) {
+            transform: translateY(-100%);
+        }
+
+        /* Navigation and other preserved elements */
+        .nav-container {
+            position: fixed !important;
+            top: 0 !important;
+            left: 0 !important;
+            right: 0 !important;
+            width: 100% !important;
+            z-index: 1000;
+            background: var(--white);
+            box-shadow: var(--shadow-light);
+            transition: transform 0.3s ease-in-out;
+            margin: 0 !important;
+            padding: 0 !important;
+        }
+
+        .nav-container.hidden {
+            transform: translateY(-100%);
+        }
+
+        /* Ensure no gaps or margins */
+        .nav-container * {
+            box-sizing: border-box;
+        }
+
+        /* Force navigation to cover full width */
+        .nav-container,
+        .navbar_purple,
+        .navbar_gold {
+            min-width: 100vw !important;
+            max-width: 100vw !important;
+            left: 0 !important;
+            right: 0 !important;
+        }
+
+        .nav-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 40px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: 80px;
+            width: 100%;
+            box-sizing: border-box;
+            min-width: 100%;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 0px;
+            text-decoration: none;
+            margin-left: 72px;
+        }
+
+        .logo-image {
+            width: auto;
+            height: 80px;
+            background: white;
+            border-radius: 0px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--white);
+            font-weight: 800;
+            font-size: 3rem;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .logo-wrapper {
+            width: 100%;
+            height: 100%;
+            background: white;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+        }
+
+        .logo-img {
+            max-width: 100%;
+            max-height: 100%;
+            object-fit: contain;
+        }
+
+        .logo-text {
+            padding-top: 50px;
+            padding-right: 20px;
+            font-size: 2.5rem;
+            font-weight: 800;
+            color: var(--primary-purple);
+        }
+
+        .nav-menu {
+            display: flex;
+            list-style: none;
+            gap: 30px;
+            margin: 0;
+            padding: 0;
+        }
+
+        .nav-link {
+            text-decoration: none;
+            color: var(--primary-purple);
+            font-weight: 700;
+            font-size: 1.1rem;
+            transition: color 0.3s ease;
+        }
+
+        .nav-link:hover {
+            color: var(--accent-gold);
+        }
+
+        .nav-item {
+            position: relative;
+            align-items: center;
+            z-index: 2;
+            right: 107px;
+        }
+
+        .dropdown {
+            position: absolute;
+            top: 100%;
+            left: 0;
+            background: var(--white);
+            min-width: 200px;
+            box-shadow: 0 8px 16px rgba(0,0,0,0.1);
+            border-radius: 8px;
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(-10px);
+            transition: all 0.3s ease;
+            z-index: 1000;
+        }
+
+        .nav-item:hover .dropdown {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+
+        .dropdown a {
+            color: var(--dark-gray);
+            padding: 12px 20px;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            border-bottom: 1px solid var(--light-gray);
+            transition: all 0.3s ease;
+            font-size: 1.1rem;
+            gap: 12px;
+        }
+
+        .dropdown a:last-child {
+            border-bottom: none;
+        }
+
+        .dropdown a:hover {
+            background: var(--light-gray);
+            color: var(--primary-purple);
+        }
+
+        .dropdown-image {
+            width: 35px;
+            height: 35px;
+            border-radius: 6px;
+            object-fit: cover;
+            flex-shrink: 0;
+            transition: all 0.3s ease;
+            background: white;
+        }
+
+        .dropdown-image:not([src]),
+        .dropdown-image[src=""],
+        .dropdown-image[src*="undefined"] {
+            background: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--primary-purple);
+            font-size: 12px;
+            font-weight: bold;
+            border: 2px dashed var(--primary-purple);
+        }
+
+        .dropdown-image:not([src])::after,
+        .dropdown-image[src=""]::after,
+        .dropdown-image[src*="undefined"]::after {
+            content: "?";
+        }
+
+        .dropdown a:hover .dropdown-image {
+            border-color: var(--primary-purple);
+            transform: scale(1.1);
+            background: var(--light-gray);
+        }
+
+        .dropdown-text {
+            font-weight: 500;
+        }
+
+
+        /* Mobile menu toggle button - hidden by default */
+        .mobile-menu-toggle {
+            display: none;
+        }
+
+        /* Side Navigation */
+        .side-nav {
+            position: fixed;
+            left: 0;
+            top: 20px; /* Position at top since no navbar */
+            width: 250px;
+            background: var(--white);
+            border-right: 2px solid var(--light-gray);
+            box-shadow: 2px 0 10px rgba(0,0,0,0.1);
+            z-index: 99;
+            max-height: calc(100vh - 40px); /* Adjust height to fit */
+            overflow-y: auto;
+            padding: 20px 0;
+            transition: transform 0.3s ease-in-out, opacity 0.3s ease-in-out, visibility 0.3s ease-in-out;
+        }
+
+        .side-nav.hidden {
+            transform: translateX(-100%) !important;
+            opacity: 0 !important;
+            visibility: hidden !important;
+        }
+
+        .side-nav.slide-up {
+            transform: translateY(-100%) !important;
+            opacity: 0;
+        }
+
+        .side-nav.navbar-hidden {
+            top: 20px; /* Keep at top when navbar is hidden */
+            max-height: calc(100vh - 40px); /* Full height minus small margin */
+        }
+
+        .side-nav.sticky-top {
+            top: 2.5% !important;
+            max-height: 100vh !important;
+            z-index: 1000;
+        }
+
+        .side-nav h3 {
+            color: var(--primary-purple);
+            font-size: 1.2rem;
+            font-weight: 700;
+            margin: 0 20px 15px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid var(--accent-gold);
+        }
+
+        .side-nav ul {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+        }
+
+        .side-nav li {
+            margin: 0;
+        }
+
+        .side-nav a {
+            display: block;
+            padding: 12px 20px;
+            color: var(--dark-gray);
+            text-decoration: none;
+            font-size: 0.95rem;
+            font-weight: 700;
+            transition: all 0.3s ease;
+            border-left: 3px solid transparent;
+        }
+
+        .side-nav a:hover {
+            background: var(--light-gray);
+            color: var(--primary-purple);
+            border-left-color: var(--primary-purple);
+        }
+
+        .side-nav a.active {
+            background: rgba(125, 77, 183, 0.1);
+            color: var(--primary-purple);
+            border-left-color: var(--primary-purple);
+            font-weight: 700;
+        }
+
+        .side-nav a.active.main-nav {
+            background: rgba(125, 77, 183, 0.15);
+            border-left-width: 4px;
+            font-weight: 700;
+        }
+        
+        .side-nav a.active.sub-nav-link {
+            background: rgba(125, 77, 183, 0.08);
+            border-left-width: 3px;
+            font-weight: 600;
+        }
+
+        .main-content {
+            min-height: 100vh;
+            padding: 40px 20px;
+            margin-left: 250px; /* Space for side navigation */
+        }
+
+        .content-container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Hero Section */
+        .hero-section {
+            background: linear-gradient(135deg, var(--primary-purple) 0%, #5B2C8A 100%);
+            color: var(--white);
+            padding: 100px 0 80px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grid" width="10" height="10" patternUnits="userSpaceOnUse"><path d="M 10 0 L 0 0 0 10" fill="none" stroke="rgba(255,255,255,0.1)" stroke-width="0.5"/></pattern></defs><rect width="100" height="100" fill="url(%23grid)"/></svg>');
+            opacity: 0.3;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .hero-text {
+            z-index: 2;
+        }
+
+        .hero-title {
+            font-size: 4rem;
+            font-weight: 800;
+            margin-bottom: 30px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+
+        .hero-title h1 {
+            font-size: 4rem;
+            margin: 0;
+        }
+
+        .hero-subtitle {
+            font-size: 2rem;
+            font-style: italic;
+            line-height: 1.6;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .hero-description {
+            font-size: 1.1rem;
+            color: var(--dark-gray);
+            line-height: 1.8;
+            margin-bottom: 40px;
+        }
+
+        /* Content Sections */
+        .content-section {
+            padding: 80px 0;
+            background: var(--white);
+        }
+
+        .content-section:nth-child(even) {
+            background: var(--light-gray);
+        }
+
+        .section-title {
+            font-size: 2.5rem;
+            font-weight: 800;
+            color: var(--primary-purple);
+            text-align: center;
+            margin-bottom: 60px;
+            position: relative;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 4px;
+            background: var(--accent-gold);
+        }
+
+        .section-content {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .section-content h2 {
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--primary-purple);
+            margin-bottom: 30px;
+            margin-top: 50px;
+        }
+
+        .section-content h2:first-child {
+            margin-top: 0;
+        }
+
+        .section-content h3 {
+            font-size: 1.6rem;
+            font-weight: 600;
+            color: var(--primary-purple);
+            margin-bottom: 20px;
+            margin-top: 40px;
+        }
+
+        .section-content p {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            color: var(--dark-gray);
+            margin-bottom: 20px;
+        }
+
+        .section-content ul {
+            margin: 20px 0;
+            padding-left: 30px;
+        }
+
+        .section-content li {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            color: var(--dark-gray);
+            margin-bottom: 10px;
+            list-style: disc;
+        }
+
+        /* Figure Styling */
+        .figure-container {
+            margin: 40px 0;
+            text-align: center;
+        }
+
+        .figure-image {
+            max-width: 90%;
+            margin: 0 auto 15px;
+            border-radius: 12px;
+            box-shadow: var(--shadow-medium);
+        }
+
+        .figure-caption {
+            font-size: 0.95rem !important;
+            color: #666 !important;
+            font-style: italic !important;
+            margin-top: 10px !important;
+        }
+
+        /* Footer */
+        .footer {
+            background: var(--primary-purple);
+            color: var(--white);
+            padding: 60px 0 30px;
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            gap: 60px;
+            margin-bottom: 40px;
+        }
+
+        .footer-section h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1.5rem;
+            color: var(--accent-gold);
+        }
+
+        .footer-section p, .footer-section a {
+            color: var(--white);
+            text-decoration: none;
+            line-height: 1.6;
+            margin-bottom: 0.5rem;
+            display: block;
+        }
+        
+        .footer-section .social-link-container {
+            display: flex;
+            align-items: center;
+            margin-bottom: 0.5rem;
+        }
+        
+        .footer-section .social-link-container p {
+            margin: 0;
+            margin-right: 5px;
+        }
+        
+        .footer-section .social-link-container a {
+            margin: 0;
+        }
+
+        .footer-bottom {
+            border-top: 1px solid rgba(255,255,255,0.2);
+            padding-top: 20px;
+            text-align: center;
+            color: rgba(255,255,255,0.8);
+        }
+
+        .nthu-logo {
+            width: 75%;
+            max-width: 100%;
+            height: auto;
+            object-fit: contain;
+            border-radius: 100%;
+            background: rgba(245, 179, 47, 0.75);
+            padding: 10px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            margin: 0 auto;
+        }
+
+        .sponsors-chyron {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .sponsor-item {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 2.5px 2.5px;
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 7.5px;
+            margin: 0px;
+            transition: all 0.3s ease;
+            border: 1px solid var(--light-gray);
+            height: auto;
+            width: auto;
+            min-width: 10px;
+            flex-shrink: 0;
+        }
+
+        .sponsor-image {
+            max-height: 120px;
+            max-width: 100%;
+            width: 100%;
+            height: 100px;
+            object-fit: contain;
+            border-radius: 5px;
+            transition: transform 0.3s ease;
+        }
+
+        .sponsors-title {
+            text-align: center;
+            color: var(--white);
+            font-size: 1.2rem;
+            font-weight: 700;
+            margin-bottom: 15px;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+        }
+
+        .sponsors-section {
+            background: rgba(125, 77, 183, 0.9);
+            padding: 20px 0;
+            margin-bottom: 30px;
+            overflow: hidden;
+            position: relative;
+            border-top: 3px solid var(--accent-gold);
+            border-bottom: 3px solid var(--accent-gold);
+        }
+
+        /* Navigation Circles */
+        .nav-circles {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            z-index: 1000;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .nav-circle {
+            width: 70px;
+            height: 70px;
+            border-radius: 50%;
+            background: var(--primary-purple);
+            color: var(--section-gray);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 15px rgba(125, 77, 183, 0.3);
+            position: relative;
+        }
+        
+        .nav-circle .nav-circle-icon {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+
+        .nav-circle:hover {
+            background: var(--accent-gold);
+            transform: scale(1.1);
+        }
+
+        .nav-circle.progress-circle {
+            background: transparent;
+            border: 4px solid var(--primary-purple);
+        }
+
+        .progress-ring {
+            position: absolute;
+            top: -80%;
+            left: -14%;
+            width: 120px;
+            height: 120px;
+            transform: rotate(-90deg);
+        }
+
+        .progress-ring circle {
+            fill: none;
+            stroke: var(--accent-gold);
+            stroke-width: 10;
+            stroke-linecap: round;
+            stroke-dasharray: 220;
+            stroke-dashoffset: 220;
+            transition: stroke-dashoffset 0.3s ease;
+        }
+
+        .nav-circle-icon {
+            font-size: 2.2rem;
+            font-weight: 900;
+            transform-origin: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 100%;
+            height: 100%;
+        }
+        
+        .nav-circle-icon.up {
+            transform: translate(-50%, -50%) rotate(-90deg);
+        }
+        
+        .nav-circle-icon.down {
+            transform: translate(-50%, -50%) rotate(90deg);
+        }
+
+        /* Responsive Design */
+        @media (max-width: 1024px) {
+            .main-content {
+                margin-left: 0;
+            }
+
+            .side-nav {
+                transform: translateX(-100%);
+            }
+
+            .side-nav.mobile-active {
+                transform: translateX(0);
+            }
+
+            .mobile-menu-toggle {
+                display: block;
+                position: fixed;
+                top: 20px;
+                left: 20px;
+                z-index: 1001;
+                background: var(--primary-purple);
+                color: var(--white);
+                width: 50px;
+                height: 50px;
+                border-radius: 50%;
+                font-size: 1.5rem;
+                cursor: pointer;
+            }
+
+            .mobile-overlay {
+                display: none;
+                position: fixed;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                background: rgba(0,0,0,0.5);
+                z-index: 999;
+            }
+
+            .mobile-overlay.active {
+                display: block;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .nav-circles {
+                bottom: 20px;
+                right: 20px;
+                gap: 10px;
+            }
+            
+            .nav-circle {
+                width: 50px;
+                height: 50px;
+            }
+
+            .nav-circle-icon {
+                font-size: 12px;
+            }
+
+            .hero-title {
+                font-size: 2rem;
+            }
+
+            .section-content p {
+                font-size: 0.9rem;
+            }
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Side Navigation -->
+    <nav class="side-nav">
+        <h3>Table of Contents</h3>
+        <ul>
+            <li><a href="#abstract" class="nav-link">Abstract</a></li>
+            <li><a href="#intro" class="nav-link">Intro</a></li>
+            <li><a href="#seed-and-seek" class="nav-link">Seed & Seek Framework</a></li>
+            <li><a href="#directed-evolution" class="nav-link">Coarse-to-Fine Evolution</a></li>
+            <li><a href="#implementation" class="nav-link">Implementation</a></li>
+            <li><a href="#gui-interface" class="nav-link">GUI Interface</a></li>
+            <li><a href="#wetlab-results" class="nav-link">Wet Lab Results</a></li>
+        </ul>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <!-- Hero Section -->
+        <section id="hero" class="hero-section">
+            <div class="hero-content">
+                <h1 class="hero-title">Protovate<br></h1> <h1 class="hero-subtitle">NTHU iGEM 2025 Appendix</h1>
+            </div>
+        </section>
+
+        <!-- Abstract Section -->
+        <section id="abstract" class="content-section">
+            <div class="content-container">
+                <h2 class="section-title">Abstract</h2>
+                <div class="section-content">
+                    <p>Protein engineering underpins modern biotechnology, yet turning designed sequences into robustly functional biomolecules remains inefficient because datasets are small, screening is costly, and sequence–function mappings are uncertain. While the development of large protein models such as Alphafold has advanced structure prediction, consistent performance across diverse conditions is still difficult to achieve. We built a data-free active-learning generative protein-language model framework, <strong>Seed & Seek</strong>, cooperating with biological directed-evolution (using a coarse-to-fine tuning strategy), spanning both <em>in vitro</em> ePCR mutations and <em>in vivo</em> EcoRep systems. Using the SpyTag/SpyCatcher pair as a testbed, we targeted improved association rates and iteratively validated candidates with split-luciferase assays. By uniting computation with biological selection, our framework accelerates discovery of adaptable, high-performing protein variants.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Intro Section -->
+        <section id="intro" class="content-section">
+            <div class="content-container">
+                <h2 class="section-title">Intro</h2>
+                <div class="section-content">
+                    <p>Protein engineering is powerful but unforgiving. Sequence space is astronomically large—each additional residue multiplies possibilities exponentially—so random search is vanishingly unlikely to hit functional designs.</p>
+                    
+                    <p>For two decades, the most dependable remedy has been <strong>directed evolution</strong>: iterate mutagenesis and selection to climb rugged fitness landscapes. Frances Arnold's 2018 Nobel Prize crystallized this approach as a core engineering paradigm and showed that, when rational design stalls, iterative cycles can still deliver functional proteins.</p>
+                    
+                    <p>At the same time, computation has reset the starting line. Modern generative, structure-aware protein AI models now propose de novo scaffolds and interfaces rather than merely scoring natural variants. The fact that AI can deliver designable backbones and sequence solutions was formally recognized as the 2024 Nobel Prize in Chemistry went to David Baker for relevant research.</p>
+                    
+                    <p>Given these trajectories, a natural question follows: <strong>can we combine directed evolution and modern AI to get the best of both worlds?</strong> Could AI provide informed proposals that respect structure and chemistry, while laboratory selection supplies the decisive reality checks?</p>
+                    
+                    <p>Two constraints complicate a naïve fusion:</p>
+                    <ul>
+                        <li><strong>Directed evolution consumes time and resources:</strong> library construction, expression, purification, and screening across conditions can dominate the timeline and budget.</li>
+                        <li><strong>AI large scale needs task-specific data:</strong> when the goal is new—binding a novel epitope, shifting kinetics under a particular buffer—there is little or no labeled information at the outset.</li>
+                    </ul>
+                    
+                    <p>So the questions we pose for the rest of this work are practical ones: How might we initialize AI guidance with minimal data? How can we prioritize experiments so that each round delivers maximal information rather than raw throughput? And can we structure the interaction so that AI and directed evolution truly complement—rather than burden—each other?</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Seed & Seek Section -->
+        <section id="seed-and-seek" class="content-section">
+            <div class="content-container">
+                <h2 class="section-title">"Seed & Seek": Active Trainable Modeling Framework for Data-free Samples</h2>
+                <div class="section-content">
+                    <p>We conceived our model, <strong>Seed & Seek</strong>, as a trainable modeling framework to accelerate protein design when there is little or no labeled data. To achieve this, we built two coordinated components that capture and refine information about a target protein. Seed & Seek turns a single prototype sequence into a full, trainable design loop without requiring historical measurements.</p>
+                    
+                    <div class="figure-container">
+                        <img src="https://static.igem.wiki/teams/5928/newdecription/seednseek.avif" alt="Seed and Seek Framework" class="figure-image">
+                        <p class="figure-caption">Figure 1. Our model: "Seed" generates candidates via RFdiffusion/ProteinMPNN and scores them with molecular simulation; "Seek" performs latent-space optimization with recursive fine-tuning under simulation feedback to converge on targets (e.g., affinity, stability, k<sub>on</sub>).</p>
+                    </div>
+
+                    <h3>Seed</h3>
+                    <p>Starting from one input sequence, we expand diversity with state-of-the-art AI mutators (RFdiffusion for backbone moves, ProteinMPNN for sequence realization). Each variant is immediately labeled <em>in silico</em> using lightweight molecular simulations (e.g., Brownian-dynamics association rates for binders). This creates a "diffused" pretraining corpus: pairs of sequence/structure with virtual performance labels. Because labels are generated online, we avoid the cold-start problem and can work even when no wet-lab data exist.</p>
+
+                    <h3>Seek</h3>
+                    <p>We then train a multimodal latent autoencoder that fuses sequence tokens with residue-level contact graphs into a compact, searchable representation. A latent optimizer navigates that space toward user-defined targets (the "performance vector," such as binding affinity, solubility or stability), while a constrained decoder proposes edits only where change is allowed—preserving catalytic motifs and fold-stabilizing regions. Critically, the model is <strong>actively trainable</strong>: newly simulated (or later, experimentally measured) outcomes are fed back to fine-tune the latent geometry, so the system learns which edits work and which break the design.</p>
+                    
+                    <p>The two phases form a closed active-learning loop: <em>generate / simulate score / select / fine-tune / regenerate</em>. In early rounds the loop explores broadly; later rounds focus on promising ridges of the fitness landscape. Because the model carries forward what it has learned "knowledge preservation", each round becomes more sample-efficient, reducing the number of candidates needed to reach strong designs.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Coarse-to-Fine Directed Evolution Section -->
+        <section id="directed-evolution" class="content-section">
+            <div class="content-container">
+                <h2 class="section-title">Coarse-to-Fine Directed Evolution</h2>
+                <div class="section-content">
+                    <p>Since we now have AI models capable of generating and learning protein sequences even from small datasets, the goal of our biological directed evolution has shifted. Instead of building large datasets for AI training, we focus on improving the efficiency of finding optimal sequences in real experimental environments.</p>
+                    
+                    <p>Therefore, we designed a <strong>coarse-to-fine directed evolution pipeline</strong> to more efficiently discover optimal sequences in real experimental environments and bridge the gap between computational design and biological reality.</p>
+
+                    <p>In the coarse phase, we emphasize the <strong>breadth of evolution</strong>. A fragmented error-prone PCR strategy is employed to generate multiple localized mutant pools, allowing flexible control over mutation distribution based on structural and functional insights. When key functional regions are known, mutations are focused on these areas; when information is limited, mutations are evenly distributed to explore a broader sequence space. The resulting mutant fragments are then recombined through fusion PCR to create a diverse and extensive mutant library, so that it can reach the optimal sequence with fewer rounds of evolution. For example, our testbed, the SpyCatcher gene, was divided into five segments, and two functionally relevant regions were selected for mutagenesis to construct the initial library.</p>
+
+                    <div class="figure-container">
+                        <img src="https://static.igem.wiki/teams/5928/newdecription/neppcr.webp" alt="Normal ePCR" class="figure-image">
+                        <p class="figure-caption">Figure 2.1. Conventional error-prone PCR (epPCR) workflow showing random mutation distribution across the entire gene sequence, resulting in limited variant diversity and potential functional disruption.</p>
+                    </div>
+
+                    <div class="figure-container">
+                        <img src="https://static.igem.wiki/teams/5928/newdecription/normal-ep.webp" alt="Normal ePCR Distribution" class="figure-image">
+                        <p class="figure-caption">Figure 2.2. Mutation distribution pattern in conventional epPCR, demonstrating scattered mutations throughout the gene sequence that may compromise protein functionality.</p>
+                    </div>
+
+                    <p>Conventional error-prone PCR (epPCR) often produces a limited number of variants and introduces mutations across a wide range of sites, as shown in Figure 2.1 and 2.2. This broad mutation distribution frequently leads to less functional or even deleterious variants, making it time-consuming to identify improved ones through screening.</p>
+
+                    <div class="figure-container">
+                        <img src="https://static.igem.wiki/teams/5928/newdecription/frag-eppcr.webp" alt="Fragment-based ePCR" class="figure-image">
+                        <p class="figure-caption">Figure 2.3. Fragment-based error-prone PCR strategy showing gene segmentation into three parts for targeted mutagenesis, enabling more controlled and efficient variant generation.</p>
+                    </div>
+
+                    <div class="figure-container">
+                        <img src="https://static.igem.wiki/teams/5928/newdecription/fragment-ep.webp" alt="Fragment ePCR Distribution" class="figure-image">
+                        <p class="figure-caption">Figure 2.4. Improved mutation distribution pattern in fragment-based epPCR, showing localized mutations that preserve functional regions while increasing variant diversity.</p>
+                    </div>
+
+                    <p>In our designed fragment-based epPCR strategy, the template is divided into several fragments. As illustrated in Figure 2.3, we separated the gene into three parts. After performing two rounds of mutagenesis, the resulting mutated fragments were recombined through fusion to generate eight different sequence combinations. This approach enables more localized and precise mutations (Figure 2.4) while substantially increasing the number of variants per mutagenesis round. Consequently, the screening process becomes much faster and more efficient compared to conventional epPCR.</p>
+
+                    <p>In the fine-tuning phase, the focus shifts toward the <strong>depth of evolution</strong>. Continuous evolution in the EcORep system enables beneficial mutations to gradually accumulate and be selectively retained, further enhancing the functional performance of the variants. This stage centers on precise screening and in-depth optimization, ultimately yielding highly functional and stable sequences.</p>
+                    
+                    <p>In addition, our pipeline is designed to adapt to different selection demands, enabling flexibility between <em>in vivo</em> and <em>in vitro</em> screening environments.</p>
+                    
+                    <p><strong>For <em>in vivo</em> selection</strong>, such as increasing expression level or folding efficiency, altering transcriptional regulation, or modifying sensing responses, we established a switchable EcORep system that allows real-time control between mutation and selection phases. By toggling the mutagenic activity on or off, researchers can fine-tune the balance between generating diversity and preserving functional variants, enabling dynamic optimization during continuous evolution. This controllable feature provides a practical way to monitor and regulate evolutionary progression within living cells.</p>
+
+                    <div class="figure-container">
+                        <img src="https://static.igem.wiki/teams/5928/newdecription/switch-on-off.webp" alt="Switchable EcORep System" class="figure-image">
+                        <p class="figure-caption">Figure 3. Switchable orthogonal replication system composed of a plasmid carrying two operons and an O-replicon containing the target gene. Operon1 (blue) is induced by IPTG to enable normal replication and maintain stability, while Operon2 (pink) is induced by rhamnose to activate a mutant DNA polymerase, shifting the O-replicon into a high-mutation mode that drives directed evolution of the target gene.</p>
+                    </div>
+
+                    <p><strong>For <em>in vitro</em> selection</strong>, such as improving binding affinity, enhancing catalytic efficiency, thermostability or increasing substrate specificity, we developed a screening kit specifically designed for protein–binder interaction assays. This toolkit enables high-throughput evaluation of binding affinity and interaction strength between target proteins, offering an efficient experimental framework for analyzing and selecting variants with improved binding performance.</p>
+
+                    <div class="figure-container">
+                        <img src="https://static.igem.wiki/teams/5928/newdecription/binder.avif" alt="Split Luciferase Assay" class="figure-image">
+                        <p class="figure-caption">Figure 4. When SpyCatcher reacts with SpyTag (or other binding proteins), the linker brings together the two halves of Luciferase_L/R, allowing them to reconstitute full enzymatic activity and emit a luminescent signal. The change in this signal over time (as shown in the left figure) is measured using a fluorescence microplate reader, and the collected data are then provided to the Dry Lab for calculation of the binding reaction rate constant (k value).</p>
+                    </div>
+
+                    <p>Together, these complementary systems ensure that our directed evolution pipeline remains versatile and effective under diverse experimental conditions.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Implementation Section -->
+        <section id="implementation" class="content-section">
+            <div class="content-container">
+                <h2 class="section-title">Implementation</h2>
+                
+                <div class="figure-container">
+                    <img src="https://static.igem.wiki/teams/5928/newdecription/igem-drawing.svg" alt="Implementation Workflow" class="figure-image">
+                    <p class="figure-caption">Figure 5. Data-free, model-guided directed-evolution flow. Starting from a single prototype, Seed expands sequence/structure diversity with RFdiffusion/ProteinMPNN and assigns in silico labels via lightweight molecular simulations, forming a pretraining and active dataset. Seek trains a latent model and performs recursive fine-tuning with simulation feedback to optimize a multi-objective performance vector (e.g., affinity, stability, binding rate constant). The best designs are then handed to coarse-to-fine directed evolution for empirical validation and rapid convergence to functional variants.</p>
+                </div>
+
+                <div class="section-content">
+                    <p>Our proposed pipeline links Seed → Seek → Wet-lab validation (looped). Seed starts from a single prototype, expands the design space with structure/sequence generators, and uses lightweight simulation to provide initial functional cues. Seek then performs goal-directed recursive fine-tuning: each round feeds back only a small, highly informative set to drive the distribution toward affinity, stability, and kon​. Finally, the best designs enter coarse-to-fine directed evolution for empirical validation and polishing, closing the model→experiment loop.
+                        Our novelty is twofold: we begin data-free, bootstrapping a trainable starting point with online generation plus simulation; then we use recursive fine-tuning to preserve learned structural/chemical priors while steadily correcting the model, so each design round moves closer to buildable, testable solutions. This pairing of AI’s design prior with biology’s selective reality is naturally suited to a high-efficiency pipeline.
+                        Compared with a typical MLDE path (large experimental library → model learning → regenerate → re-screen), we minimize early, expensive screening by letting the model first shrink the problem and sharpen candidates, then using directed evolution for minimal-round functional ascent. The result is lower front-end cost and time, higher information gain per experiment, and faster arrival at practical, translatable protein variants.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- GUI Interface Section -->
+        <section id="gui-interface" class="content-section">
+            <div class="content-container">
+                <h2 class="section-title">GUI Interface</h2>
+                <div class="section-content">
+                    <p>The input requires the user to provide a PDB file and specify parameter settings, including contigs, hotspot residues, and the number of diffusion steps. Because the workflow assigns functional labels to proteins, the user must also supply simulation models to evaluate the generated sequences. After several days of computation, the system returns results that include protein labels and the top-ranked (optimal) protein.</p>
+                    
+                    <div class="figure-container">
+                        <img src="UI.jpg" alt="GUI Interface" class="figure-image">
+                        <p class="figure-caption">Figure 6. GUI Interface for protein design workflow, allowing users to input PDB files and specify parameter settings including contigs, hotspot residues, and diffusion steps for automated protein optimization.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Wet Lab Experiment Results Section -->
+        <section id="wetlab-results" class="content-section">
+            <div class="content-container">
+                <h2 class="section-title">Wet Lab Experiment Results</h2>
+                <div class="section-content">
+                    
+                    <h3>Experiment A: In vivo mutagenesis (OrthoRep system)</h3>
+                    <p>PCR optimization at 68 °C yielded clean amplification of SpyCatcher (1,456 bp) and GFP (1,852 bp). Successful transformation into E. coli DH10B was confirmed by antibiotic selection. Colony screening and verification are ongoing.</p>
+                    
+                    <div class="figure-container">
+                        <img src="exp-A.png" alt="Experiment A Results" class="figure-image">
+                        <p class="figure-caption">Figure 7. In vivo mutagenesis results showing successful PCR optimization at 68°C for SpyCatcher (1,456 bp) and GFP (1,852 bp) amplification, with confirmed transformation into E. coli DH10B through antibiotic selection.</p>
+                    </div>
+
+                    <h3>Experiment B: In vitro kinetics</h3>
+                    <p>Fourteen SpyCatcher variants (wild-type + mutants) fused with luciferase were cloned into E. coli using kanamycin selection. Plasmid electrophoresis confirmed correct insert sizes (~5.5 kb). Western blot detection of the His-tagged half Luci–SpyCatcher fusion was weak, likely due to insufficient IPTG induction or suboptimal antibody conditions. Optimization of expression and detection is in progress. Quantitative binding assays (RLU, k values under varying pH) are planned next.</p>
+
+                    <h3>Experiment C: Directed evolution validation</h3>
+                    <p>Initial error-prone PCR protocols were established for SpyCatcher diversification. Subsequent screening will link sequence diversity with kinetic performance to refine computational models.</p>
+                    
+                    <div class="figure-container">
+                        <img src="exp-C.png" alt="Experiment C" class="figure-image">
+                        <p class="figure-caption">Figure 8. Directed evolution validation showing initial error-prone PCR protocols established for SpyCatcher diversification, with subsequent screening linking sequence diversity to kinetic performance for computational model refinement.</p>
+                    </div>
+
+                    <h3>Conclusion</h3>
+                    <p>While full validation is ongoing, these results confirm key milestones in establishing a design–build–test–learn framework that integrates AI prediction with experimental evolution—laying the groundwork for intelligent, data-driven protein engineering.</p>
+
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer" id="contact">
+        <div class="footer-content">
+            <!-- Sponsors Section -->
+            <div class="sponsors-section">
+                <div class="sponsors-title">Our Sponsors and Supporters</div>
+                <div class="sponsors-chyron">
+                    <div class="sponsor-item">
+                        <img src="https://static.igem.wiki/teams/5928/sponsor/genescript.webp" alt="GeneScript" class="sponsor-image">
+                    </div>
+                    <div class="sponsor-item">
+                        <img src="https://static.igem.wiki/teams/5928/sponsor/idt.webp" alt="IDT" class="sponsor-image">
+                    </div>
+                    <div class="sponsor-item">
+                        <img src="https://static.igem.wiki/teams/5928/sponsor/novatek.webp" alt="Novatek" class="sponsor-image">
+                    </div>
+                    <div class="sponsor-item">
+                        <img src="https://static.igem.wiki/teams/5928/sponsor/ntsec.webp" alt="NTSEC" class="sponsor-image">
+                    </div>
+                    <div class="sponsor-item">
+                        <img src="https://static.igem.wiki/teams/5928/sponsor/topocore.avif" alt="TopoCore" class="sponsor-image">
+                    </div>
+                    <div class="sponsor-item">
+                        <img src="https://static.igem.wiki/teams/5928/sponsor/twist-bioscience.webp" alt="Twist Bioscience" class="sponsor-image">
+                    </div>
+                    <div class="sponsor-item">
+                        <img src="https://static.igem.wiki/teams/5928/sponsor/.webp" alt="陶聲洋" class="sponsor-image">
+                    </div>
+                    <div class="sponsor-item">
+                        <img src="https://static.igem.wiki/teams/5928/sponsor/inn3d-studio.webp" alt="inn3D" class="sponsor-image" style="background:  var(--primary-purple);">
+                    </div>
+                    <div class="sponsor-item">
+                        <img src="https://static.igem.wiki/teams/5928/sponsor/cbc.webp" alt="CBC" class="sponsor-image">
+                    </div>
+                    <div class="sponsor-item">
+                        <img src="https://static.igem.wiki/teams/5928/sponsor/caliway-svg.webp" alt="caliway" class="sponsor-image">
+                    </div>
+                </div>
+            </div>
+
+            <div class="footer-grid">
+                <div class="footer-section">
+                    <h3>Research Areas</h3>
+                    <p>Active Deep Learning</p>
+                    <p>Directed Evolution</p>
+                    <p>Protein Engineering</p>
+                    <p>Synthetic Biology</p>
+                    <p>Sequence Design</p>
+                </div>
+                
+                <div class="footer-section">
+                    <h3>Contact</h3>
+                    <p>Email: nthuxigem@gmail.com</p>
+                    <div class="social-link-container">
+                        <p>Instagram: </p><a href="https://www.instagram.com/igem_nthu/">@igem_nthu</a>
+                    </div>
+                    <div class="social-link-container">
+                        <p>Facebook: </p><a href="https://www.facebook.com/NTHU.iGEM/?locale=zh_TW">IGEM NTHU Taiwan</a>
+                    </div>
+                    <div class="social-link-container">
+                        <p>Linkedin: </p><a href="https://www.linkedin.com/in/nthu-taiwan-igem-bb9959354/">NTHU_Taiwan iGEM</a>
+                    </div>
+                    <div class="social-link-container">
+                        <p>Github: </p><a href="https://github.com/orgs/protovate-lab/repositories">iGEM @ NTHU Taiwan 2025</a>
+                    </div>
+                    <p>Address: No. 101, Section 2, Kuang-Fu Road, Hsinchu, Taiwan 30013, R.O.C.</p>
+                </div>
+                
+                <div class="footer-section">
+                    <img src="https://static.igem.wiki/teams/5928/sponsor/nthu.webp" alt="NTHU" class="nthu-logo">
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>&copy; 2025 Protovate. All rights reserved.</p>
+                <p style="margin-top: 10px;">
+                    <a href="https://gitlab.igem.org/2025/NTHU-Taiwan" style="color: var(--accent-gold); text-decoration: none;">
+                        View our source code on GitLab
+                    </a>
+                </p>
+                <p style="margin-top: 10px;">
+                    This work is licensed under a 
+                    <a href="http://creativecommons.org/licenses/by/4.0/" style="color: var(--accent-gold); text-decoration: none;">
+                        Creative Commons Attribution 4.0 International License
+                    </a>
+                </p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Navigation Circles -->
+    <div class="nav-circles">
+        <div class="nav-circle" onclick="scrollToTop()" title="Back to Top">
+            <div class="nav-circle-icon up">&nbsp 〉〉</div>
+        </div>
+        <div class="nav-circle progress-circle" onclick="scrollToNext();" title="Next Section">
+            <svg class="progress-ring">
+                <circle cx="39" cy="39" r="35"></circle>
+            </svg>
+            <div class="nav-circle-icon down">&nbsp 〉〉</div>
+        </div>
+    </div>
+
+
+    <script>
+        // Navigation functionality
+        let isScrolling = false;
+        let scrollTimeout;
+        let isFixed = false;
+        let originalScrollPosition = 0;
+
+        // Smooth scroll function
+        function scrollToTop() {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        }
+
+        // Scroll to next section
+        window.scrollToNext = function() {
+            try {
+                console.log('scrollToNext function called!');
+                
+                const sections = ['hero', 'abstract', 'intro', 'seed-and-seek', 'directed-evolution', 'implementation', 'gui-interface', 'wetlab-results'];
+                const currentScrollTop = window.pageYOffset;
+                let nextSection = null;
+                
+                console.log('Current scroll position:', currentScrollTop);
+                
+                // Find the first section that is below current scroll position
+                for (let i = 0; i < sections.length; i++) {
+                    const section = document.getElementById(sections[i]);
+                    if (section) {
+                        console.log(`Section ${sections[i]}: top=${section.offsetTop}`);
+                        if (section.offsetTop > currentScrollTop + 50) {
+                            nextSection = section;
+                            console.log(`Found next section: ${sections[i]}`);
+                            break;
+                        }
+                    }
+                }
+                
+                if (nextSection) {
+                    console.log('Scrolling to:', nextSection.id);
+                    nextSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                } else {
+                    console.log('No next section found, scrolling to top');
+                    window.scrollTo({ top: 0, behavior: 'smooth' });
+                }
+            } catch (error) {
+                console.error('Error in scrollToNext:', error);
+                alert('Error in navigation: ' + error.message);
+            }
+        };
+
+        // Progress bar update function
+        function updateProgressBar() {
+            const scrollTop = window.pageYOffset;
+            const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+            const scrollPercent = (scrollTop / docHeight) * 100;
+            const circumference = 2 * Math.PI * 35; // radius = 35
+            const offset = circumference - (scrollPercent / 100) * circumference;
+            
+            const circle = document.querySelector('.progress-ring circle');
+            if (circle) {
+                circle.style.strokeDashoffset = offset;
+            }
+        }
+
+        // Update active navigation link
+        function updateActiveNavLink() {
+            const sections = document.querySelectorAll('section[id]');
+            const navLinks = document.querySelectorAll('.side-nav .nav-link');
+            const currentScrollTop = window.pageYOffset || document.documentElement.scrollTop;
+            
+            let current = '';
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop - 150;
+                const sectionHeight = section.offsetHeight;
+                if (currentScrollTop >= sectionTop && currentScrollTop < sectionTop + sectionHeight) {
+                    current = section.getAttribute('id');
+                }
+            });
+
+            navLinks.forEach(link => {
+                link.classList.remove('active');
+                if (link.getAttribute('href') === '#' + current) {
+                    link.classList.add('active');
+                }
+            });
+        }
+
+        // Combined navbar and side nav scroll functionality
+        let lastScrollTop = 0;
+
+        function handleCombinedScroll() {
+            const navContainer = document.querySelector('.nav-container');
+            const navbarPurple = document.querySelector('.navbar_purple');
+            const navbarGold = document.querySelector('.navbar_gold');
+            const sideNav = document.querySelector('.side-nav');
+            const currentScrollTop = window.pageYOffset || document.documentElement.scrollTop;
+            
+            
+            clearTimeout(scrollTimeout);
+            
+            // Handle navbar visibility with three-layer slide-out animation (only if navbar exists)
+            if (navContainer && navbarPurple && navbarGold) {
+                if (currentScrollTop > lastScrollTop && currentScrollTop > 100) {
+                    // Hide navbar when scrolling down and past 100px
+                    navContainer.classList.add('hidden');
+                    navbarPurple.classList.remove('hidden');
+                    navbarGold.classList.remove('hidden');
+                } else {
+                    // Show navbar when scrolling up
+                    navContainer.classList.remove('hidden');
+                    navbarPurple.classList.add('hidden');
+                    navbarGold.classList.add('hidden');
+                }
+            }
+            
+            // Handle side nav sticky behavior
+            if (sideNav) {
+                // First check if we're in the sponsor section
+                const sponsorSection = document.querySelector('.sponsors-section');
+                let isSponsorVisible = false;
+                if (sponsorSection) {
+                    const sponsorRect = sponsorSection.getBoundingClientRect();
+                    const windowHeight = window.innerHeight;
+                    isSponsorVisible = sponsorRect.top < windowHeight && sponsorRect.bottom > 0;
+                }
+                
+                if (isSponsorVisible) {
+                    // Hide TOC when in sponsor section
+                    sideNav.classList.add('hidden');
+                    sideNav.classList.remove('slide-up');
+                    sideNav.classList.remove('sticky-top');
+                } else {
+                    // Normal TOC behavior when not in sponsor section
+                    if (currentScrollTop > lastScrollTop && currentScrollTop > 200) {
+                        // Scrolling down - make TOC stick to top
+                        sideNav.classList.add('sticky-top');
+                        sideNav.classList.remove('slide-up');
+                        sideNav.classList.remove('hidden');
+                    } else if (currentScrollTop < lastScrollTop && currentScrollTop < 200) {
+                        // Scrolling up and near top - return to normal position
+                        sideNav.classList.remove('sticky-top');
+                        sideNav.classList.remove('slide-up');
+                        sideNav.classList.remove('hidden');
+                    } else if (currentScrollTop > lastScrollTop && currentScrollTop <= 200) {
+                        // Scrolling down but still near top - slide up the TOC
+                        sideNav.classList.add('slide-up');
+                        sideNav.classList.remove('sticky-top');
+                        sideNav.classList.remove('hidden');
+                    } else {
+                        // Scrolling up - show the TOC in normal position
+                        sideNav.classList.remove('slide-up');
+                        sideNav.classList.remove('sticky-top');
+                        sideNav.classList.remove('hidden');
+                    }
+                }
+            }
+            
+            lastScrollTop = currentScrollTop <= 0 ? 0 : currentScrollTop;
+            
+            // Update active navigation link
+            updateActiveNavLink();
+        }
+
+        // Mobile menu toggle function
+        function toggleMobileMenu() {
+            const sideNav = document.querySelector('.side-nav');
+            const mobileToggle = document.querySelector('.mobile-menu-toggle');
+            const mobileOverlay = document.querySelector('.mobile-overlay');
+            
+            if (sideNav.classList.contains('mobile-active')) {
+                sideNav.classList.remove('mobile-active');
+                mobileOverlay.classList.remove('active');
+                mobileToggle.innerHTML = '☰';
+                document.body.style.overflow = '';
+            } else {
+                sideNav.classList.add('mobile-active');
+                mobileOverlay.classList.add('active');
+                mobileToggle.innerHTML = '✕';
+                document.body.style.overflow = 'hidden';
+            }
+        }
+
+        // Initialize when page loads
+        document.addEventListener('DOMContentLoaded', function() {
+            updateProgressBar();
+            // Call updateActiveNavLink after everything is initialized
+            setTimeout(updateActiveNavLink, 100);
+        });
+
+        // Update progress bar on scroll
+        window.addEventListener('scroll', updateProgressBar);
+        
+        // Initial progress bar update
+        updateProgressBar();
+
+        // Add scroll listener for combined functionality
+        window.addEventListener('scroll', handleCombinedScroll);
+        
+        // Add scroll listener for table of contents highlighting
+        window.addEventListener('scroll', updateActiveNavLink);
+    </script>
+</body>
+</html>
