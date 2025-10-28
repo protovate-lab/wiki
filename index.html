@@ -324,6 +324,25 @@
         /* Mobile menu toggle button - hidden by default */
         .mobile-menu-toggle {
             display: none;
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            z-index: 1001;
+            background: var(--primary-purple);
+            color: var(--white);
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            font-size: 1.5rem;
+            cursor: pointer;
+            border: none;
+            box-shadow: 0 4px 15px rgba(125, 77, 183, 0.3);
+            transition: all 0.3s ease;
+        }
+
+        .mobile-menu-toggle:hover {
+            background: var(--accent-gold);
+            transform: scale(1.1);
         }
 
         /* Side Navigation */
@@ -335,7 +354,7 @@
             background: var(--white);
             border-right: 2px solid var(--light-gray);
             box-shadow: 2px 0 10px rgba(0,0,0,0.1);
-            z-index: 99;
+            z-index: 1000;
             max-height: calc(100vh - 40px); /* Adjust height to fit */
             overflow-y: auto;
             padding: 20px 0;
@@ -753,17 +772,17 @@
 
         .progress-ring {
             position: absolute;
-            top: -80%;
-            left: -14%;
-            width: 120px;
-            height: 120px;
-            transform: rotate(-90deg);
+            top: 50%;
+            left: 50%;
+            width: 100%;
+            height: 100%;
+            transform: translate(-50%, -50%) rotate(-90deg);
         }
 
         .progress-ring circle {
             fill: none;
             stroke: var(--accent-gold);
-            stroke-width: 10;
+            stroke-width: 4;
             stroke-linecap: round;
             stroke-dasharray: 220;
             stroke-dashoffset: 220;
@@ -789,48 +808,122 @@
             transform: translate(-50%, -50%) rotate(90deg);
         }
 
+        /* Mobile overlay */
+        .mobile-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.5);
+            z-index: 999;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .mobile-overlay.active {
+            display: block;
+            opacity: 1;
+        }
+
         /* Responsive Design */
         @media (max-width: 1024px) {
             .main-content {
                 margin-left: 0;
+                padding: 20px 15px;
             }
 
             .side-nav {
                 transform: translateX(-100%);
+                width: 280px;
+                top: 0;
+                max-height: 100vh;
+                padding: 20px 0;
+                z-index: 1001;
             }
 
             .side-nav.mobile-active {
                 transform: translateX(0);
+                opacity: 1;
+                visibility: visible;
             }
 
             .mobile-menu-toggle {
-                display: block;
-                position: fixed;
-                top: 20px;
-                left: 20px;
-                z-index: 1001;
-                background: var(--primary-purple);
-                color: var(--white);
-                width: 50px;
-                height: 50px;
-                border-radius: 50%;
-                font-size: 1.5rem;
-                cursor: pointer;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                z-index: 1002;
             }
 
             .mobile-overlay {
-                display: none;
-                position: fixed;
-                top: 0;
-                left: 0;
-                width: 100%;
-                height: 100%;
-                background: rgba(0,0,0,0.5);
-                z-index: 999;
+                z-index: 1000;
             }
 
-            .mobile-overlay.active {
-                display: block;
+            .content-container {
+                padding: 0 15px;
+            }
+
+            .hero-title {
+                font-size: 2.5rem;
+            }
+
+            .hero-subtitle {
+                font-size: 1.5rem;
+            }
+
+            .section-title {
+                font-size: 2rem;
+            }
+
+            .section-content h2 {
+                font-size: 1.6rem;
+            }
+
+            .section-content h3 {
+                font-size: 1.4rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .footer-grid {
+                grid-template-columns: 1fr;
+                gap: 30px;
+                text-align: center;
+            }
+
+            .sponsors-chyron {
+                gap: 15px;
+            }
+
+            .sponsor-item {
+                padding: 5px;
+                min-width: 80px;
+            }
+
+            .sponsor-image {
+                max-height: 80px;
+                height: 60px;
+            }
+
+            .nthu-logo {
+                width: 60%;
+                max-width: 200px;
+            }
+
+            .footer-section h3 {
+                font-size: 1.3rem;
+                margin-bottom: 1rem;
+            }
+
+            .footer-section p, .footer-section a {
+                font-size: 0.95rem;
+                margin-bottom: 0.3rem;
+            }
+
+            .social-link-container {
+                justify-content: center;
+                margin-bottom: 0.3rem;
             }
         }
 
@@ -850,11 +943,63 @@
                 font-size: 12px;
             }
 
+            /* Hide progress ring on mobile */
+            .nav-circle.progress-circle .progress-ring {
+                display: none;
+            }
+
+            .nav-circle.progress-circle {
+                background: var(--primary-purple);
+                border: none;
+            }
+
             .hero-title {
                 font-size: 2rem;
             }
 
             .section-content p {
+                font-size: 0.9rem;
+            }
+
+            .main-content {
+                padding: 15px 10px;
+            }
+
+            .content-container {
+                padding: 0 10px;
+            }
+
+            .hero-content {
+                padding: 0 15px;
+            }
+
+            .section-content {
+                padding: 0 15px;
+            }
+
+            .footer-content {
+                padding: 0 15px;
+            }
+
+            .sponsors-chyron {
+                gap: 10px;
+            }
+
+            .sponsor-item {
+                min-width: 70px;
+                padding: 3px;
+            }
+
+            .sponsor-image {
+                max-height: 60px;
+                height: 50px;
+            }
+
+            .footer-section h3 {
+                font-size: 1.2rem;
+            }
+
+            .footer-section p, .footer-section a {
                 font-size: 0.9rem;
             }
         }
@@ -872,6 +1017,12 @@
     </style>
 </head>
 <body>
+
+    <!-- Mobile Menu Toggle Button -->
+    <button class="mobile-menu-toggle" onclick="toggleMobileMenu()">☰</button>
+    
+    <!-- Mobile Overlay -->
+    <div class="mobile-overlay" onclick="toggleMobileMenu()"></div>
 
     <!-- Side Navigation -->
     <nav class="side-nav">
@@ -1054,7 +1205,7 @@
                     <p>PCR optimization at 68 °C yielded clean amplification of SpyCatcher (1,456 bp) and GFP (1,852 bp). Successful transformation into E. coli DH10B was confirmed by antibiotic selection. Colony screening and verification are ongoing.</p>
                     
                     <div class="figure-container">
-                        <img src="exp-A.png" alt="Experiment A Results" class="figure-image">
+                        <img src="圖片二.jpg" alt="Experiment A Results" class="figure-image">
                         <p class="figure-caption">Figure 7. In vivo mutagenesis results showing successful PCR optimization at 68°C for SpyCatcher (1,456 bp) and GFP (1,852 bp) amplification, with confirmed transformation into E. coli DH10B through antibiotic selection.</p>
                     </div>
 
@@ -1065,7 +1216,8 @@
                     <p>Initial error-prone PCR protocols were established for SpyCatcher diversification. Subsequent screening will link sequence diversity with kinetic performance to refine computational models.</p>
                     
                     <div class="figure-container">
-                        <img src="exp-C.png" alt="Experiment C" class="figure-image">
+                        <img src="圖三.jpg" alt="Experiment C Left" class="figure-image" style="max-width: 45%; margin-right: 10px;">
+                        <img src="圖四.jpg" alt="Experiment C Right" class="figure-image" style="max-width: 45%; margin-left: 10px;">
                         <p class="figure-caption">Figure 8. Directed evolution validation showing initial error-prone PCR protocols established for SpyCatcher diversification, with subsequent screening linking sequence diversity to kinetic performance for computational model refinement.</p>
                     </div>
 
@@ -1365,11 +1517,52 @@
             }
         }
 
+        // Close mobile menu when clicking on nav links
+        function closeMobileMenu() {
+            const sideNav = document.querySelector('.side-nav');
+            const mobileToggle = document.querySelector('.mobile-menu-toggle');
+            const mobileOverlay = document.querySelector('.mobile-overlay');
+            
+            if (sideNav && sideNav.classList.contains('mobile-active')) {
+                sideNav.classList.remove('mobile-active');
+                if (mobileOverlay) mobileOverlay.classList.remove('active');
+                if (mobileToggle) mobileToggle.innerHTML = '☰';
+                document.body.style.overflow = '';
+            }
+        }
+
+        // Smooth scroll to section with mobile menu handling
+        function smoothScrollToSection(targetId) {
+            const targetSection = document.getElementById(targetId);
+            if (targetSection) {
+                // Close mobile menu first
+                closeMobileMenu();
+                
+                // Small delay to ensure menu is closed before scrolling
+                setTimeout(() => {
+                    targetSection.scrollIntoView({ 
+                        behavior: 'smooth', 
+                        block: 'start' 
+                    });
+                }, 100);
+            }
+        }
+
         // Initialize when page loads
         document.addEventListener('DOMContentLoaded', function() {
             updateProgressBar();
             // Call updateActiveNavLink after everything is initialized
             setTimeout(updateActiveNavLink, 100);
+            
+            // Add click listeners to nav links for smooth scrolling
+            const navLinks = document.querySelectorAll('.side-nav .nav-link');
+            navLinks.forEach(link => {
+                link.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const targetId = this.getAttribute('href').substring(1);
+                    smoothScrollToSection(targetId);
+                });
+            });
         });
 
         // Update progress bar on scroll
